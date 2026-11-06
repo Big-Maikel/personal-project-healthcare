@@ -1,0 +1,39 @@
+# Data Dictionary for Patient Appointment Dataset
+
+## patients.csv
+- Description: One row per patient
+- Columns:
+  - patient_id (str): Unique identifier for the patient
+  - age (int): Age of the patient
+  - preferred_language (category): Patient's preferred language for communication
+  - distance_km (float): Approximate distance from patient's home to clinic
+  - has_transport (category): Whether the patient has access to transport
+  - chronic_conditions_count (int): Number of chronic conditions
+  - patient_since_year (int): Year patient's record was first created
+
+## appointments.csv
+- Description: One row per appointment
+- Columns:
+  - appointment_id (str): Appointment identifier
+  - patient_id (str): Patient identifier (join key)
+  - department (category): Clinic department
+  - appointment_type (category): Type/purpose of appointment
+  - scheduled_date (date): Date appointment is scheduled for
+  - booking_lead_days (int): Days between booking and appointment
+  - weekday (category): Day of week for appointment
+  - appointment_status (category): Final operational status
+  - duration_minutes (int): Length in minutes (regression target)
+
+## reminders.csv
+- Description: Reminder information (joined by appointment_id)
+- Columns:
+  - appointment_id (str): Join key to appointments
+  - sms_sent (category): Whether SMS reminder was sent
+  - days_before_reminder (int/category): Days before appointment reminder was sent
+  - reminder_language (category): Language used in reminder message
+
+## appointment_outcomes.csv
+- Description: Target labels (joined by appointment_id)
+- Columns:
+  - appointment_id (str): Join key to appointments
+  - missed_appointment (0/1): Binary indicator of missed appointment
